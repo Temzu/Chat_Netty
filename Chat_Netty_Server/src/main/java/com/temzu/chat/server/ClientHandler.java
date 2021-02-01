@@ -1,0 +1,39 @@
+package com.temzu.chat.server;
+
+import io.netty.buffer.ByteBuf;
+import io.netty.channel.ChannelHandlerContext;
+import io.netty.channel.ChannelInboundHandlerAdapter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+public class ClientHandler extends ChannelInboundHandlerAdapter {
+    private static final Logger LOG = LoggerFactory.getLogger(ClientHandler.class);
+
+
+    @Override
+    public void channelInactive(ChannelHandlerContext ctx) throws Exception {
+        LOG.debug("Client disconnected!");
+    }
+
+    @Override
+    public void channelActive(ChannelHandlerContext ctx) throws Exception {
+        LOG.debug("Client connected!");
+    }
+
+    @Override
+    public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
+        ByteBuf buf = (ByteBuf) msg;
+
+        while (buf.readableBytes() > 0) {
+
+        }
+
+        buf.release();
+    }
+
+    @Override
+    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
+        LOG.debug("e = " + cause);
+        ctx.close();
+    }
+}
