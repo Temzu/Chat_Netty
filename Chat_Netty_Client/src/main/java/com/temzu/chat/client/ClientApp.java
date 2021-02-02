@@ -1,12 +1,17 @@
 package com.temzu.chat.client;
 
+import com.temzu.chat.client.network.Network;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ClientApp extends Application {
+    private static final Logger LOG = LoggerFactory.getLogger(ClientApp.class);
+
 
     @Override
     public void start(Stage primaryStage) throws Exception{
